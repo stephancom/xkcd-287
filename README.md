@@ -1,6 +1,11 @@
 # xkcd-287
 in fulfillment of a code challenge
 
+![General solutions get you a 50% tip.](https://imgs.xkcd.com/comics/np_complete.png)
+
+* [xkcd 287](https://xkcd.com/287/)
+* [explanation](https://www.explainxkcd.com/wiki/index.php/287:_NP-Complete)
+
 # Spec
 
 > With apologies to xkcd, please provide a solution to the following programming exercise:
@@ -21,3 +26,10 @@ in fulfillment of a code challenge
 |hot wings|$3.55|
 |mozzarella sticks|$4.20|
 |sampler plate|$5.80|
+
+# installation & usage
+
+* clone repository
+* bundle
+* `chmod +x exord.rb`
+* ./exord.rb menu.txt
