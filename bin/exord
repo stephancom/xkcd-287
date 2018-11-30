@@ -28,20 +28,22 @@ puts menu.inspect
 puts "Desired total: #{total.format}"
 
 puts
-puts "making random orders"
+puts 'making random orders'
 puts menu.random_order(rand(1..20)).inspect
 
 puts "monto carlo method attempt for total of #{total.format}"
 attempt = 0
-begin
+loop do
   attempt += 1
   order = Order.new
-  begin
+  loop do
     order << menu.random_item
-  end while order.total < total
+    break unless order.total < total
+  end
   puts "attempt #{attempt}: #{order.total.format}"
-end while order.total != total
+  break if order.total == total
+end
 
-puts "success!"
+puts 'success!'
 puts order.inspect
 # pry

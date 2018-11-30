@@ -14,7 +14,7 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
-  config.after do
+  config.before do
     Money.locale_backend = :currency
   end
 end

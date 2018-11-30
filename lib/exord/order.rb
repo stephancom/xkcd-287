@@ -14,6 +14,7 @@ module Exord
         @entries << OrderEntry.new(item, quantity)
       else
         raise OrderEntry::InvalidQuantity if quantity < 1
+
         @entries[dupe].quantity += quantity
       end
     end
@@ -29,6 +30,7 @@ module Exord
 
     def total
       return Money.new(0) if @entries.empty?
+
       @entries.inject(0) { |sum, entry| sum + entry.subtotal }
     end
 

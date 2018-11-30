@@ -73,15 +73,15 @@ RSpec.describe Order do
       describe 'twice' do
         before do
           order << peche_a_la_frog
-          order << peche_a_la_frog          
+          order << peche_a_la_frog
         end
 
         it 'should have the right number of items' do
-          expect(order.items_count).to eq(4)          
+          expect(order.items_count).to eq(4)
         end
 
         it 'should have the right total' do
-          expect(order.total).to eq(pf_price * 3 + fp_price)          
+          expect(order.total).to eq(pf_price * 3 + fp_price)
         end
 
         # yeah, it's bad form to inspect internal state, I'm torn whether to expose this or not

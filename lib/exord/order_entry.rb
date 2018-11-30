@@ -5,15 +5,17 @@ module Exord
     def initialize(item, quantity = 1)
       @item = item
       raise InvalidQuantity if quantity < 1
+
       @quantity = quantity
     end
-    
+
     def subtotal
       @item.price * quantity
     end
 
     def quantity=(new_quantity)
       raise InvalidQuantity if new_quantity < 1
+
       @quantity = new_quantity
     end
 

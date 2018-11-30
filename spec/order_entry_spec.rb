@@ -2,17 +2,17 @@ RSpec.describe OrderEntry do
   # source: https://www.reuters.com/article/us-dessert/new-yorks-25000-dessert-sets-guinness-record-idUSN0753679220071107
   let(:name) { 'Frrozen Haute Chocolate' }
   let(:price) { Money.from_amount(25_000) }
-  let(:item) { Item.new(name,price.format) }
+  let(:item) { Item.new(name, price.format) }
 
   describe 'a basic order entry' do
     let(:quantity) { 2 }
-    let(:entry) { OrderEntry.new(item,quantity) }
+    let(:entry) { OrderEntry.new(item, quantity) }
 
     it 'computes a subtotal' do
       expect(entry.subtotal).to eq(price * quantity)
     end
 
-    describe 'quantity' do    
+    describe 'quantity' do
       it 'decreases' do
         expect {
           entry.quantity = 1
@@ -56,7 +56,7 @@ RSpec.describe OrderEntry do
       end
 
       it 'has the formatted subtotal' do
-        expect(row.last).to eq( (price*quantity).format )
+        expect(row.last).to eq((price * quantity).format)
       end
     end
 

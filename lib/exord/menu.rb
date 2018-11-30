@@ -13,8 +13,8 @@ module Exord
     end
     alias << add_item
 
-    def parse_lines(f)
-      f.each do |line|
+    def parse_lines(lines)
+      lines.each do |line|
         @items << Item.parse(line)
       end
     end
@@ -34,6 +34,7 @@ module Exord
     def random_item
       items.to_a.sample
     end
+
     def random_order(num_items)
       Order.new.tap do |random_order|
         num_items.times do
