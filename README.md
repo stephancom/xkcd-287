@@ -27,9 +27,15 @@ in fulfillment of a code challenge
 |mozzarella sticks|$4.20|
 |sampler plate|$5.80|
 
-# installation & usage
+## Usage
 
-* clone repository
-* bundle
-* `chmod +x exord.rb`
-* ./exord.rb menu.txt
+* install gem
+* exord menu.txt
+
+## Development
+
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

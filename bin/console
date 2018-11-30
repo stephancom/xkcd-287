@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'exord'
+require 'pry'
+
+Money.locale_backend = :currency
+
+Pry.start

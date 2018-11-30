@@ -1,4 +1,3 @@
-require 'terminal-table'
 module Exord
   # a collection of menu items
   class Menu

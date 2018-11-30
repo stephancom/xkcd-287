@@ -1,10 +1,20 @@
 require 'simplecov'
-SimpleCov.start
-
-require_relative '../lib/item'
-require_relative '../lib/menu'
-require_relative '../lib/order'
-require_relative '../lib/order_entry'
+require 'bundler/setup'
+require 'exord'
 include Exord
 
-Money.locale_backend = :currency
+RSpec.configure do |config|
+  # Enable flags like --only-failures and --next-failure
+  config.example_status_persistence_file_path = '.rspec_status'
+
+  # Disable RSpec exposing methods globally on `Module` and `main`
+  config.disable_monkey_patching!
+
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+
+  config.after do
+    Money.locale_backend = :currency
+  end
+end

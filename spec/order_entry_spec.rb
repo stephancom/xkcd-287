@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe OrderEntry do
+RSpec.describe OrderEntry do
   # source: https://www.reuters.com/article/us-dessert/new-yorks-25000-dessert-sets-guinness-record-idUSN0753679220071107
   let(:name) { 'Frrozen Haute Chocolate' }
   let(:price) { Money.from_amount(25_000) }

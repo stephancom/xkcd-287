@@ -1,7 +1,4 @@
-require 'spec_helper'
-require 'pry'
-
-describe Order do
+RSpec.describe Order do
   # source: https://youtu.be/iuE_a1pTsO4
   # yeah, yeah, prices ought to be in pounds.  i18n wasn't in the spec.
   let(:menu) { Menu.new('Frog and Peach') }

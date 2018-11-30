@@ -1,4 +1,3 @@
-require 'monetize'
 module Exord
   # a single menu item with a name and price
   class Item

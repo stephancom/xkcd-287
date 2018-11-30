@@ -10,13 +10,7 @@
 # based on XKCD 287 - https://xkcd.com/287/
 # in fulfillment of a programming challenge
 
-require 'pry'
-require 'monetize'
-require 'terminal-table'
-require './lib/item'
-require './lib/menu'
-require './lib/order'
-require './lib/order_entry'
+require 'exord'
 include Exord
 
 Money.locale_backend = :currency

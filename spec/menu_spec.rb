@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Menu do
+RSpec.describe Menu do
   let(:menu_lines) { SLIM_MENU.split }
 
   # expect item count change
