@@ -4,9 +4,9 @@ module Exord
   class Menu
     attr_reader :items
 
-    def initialize(title = 'Menu', items = [])
-      @title = title
-      @items = items
+    def initialize(title = 'Menu')
+      @title = title.strip
+      @items = SortedSet.new
     end
 
     def add_item(item)
@@ -25,9 +25,9 @@ module Exord
     end
 
     def inspect
-      Terminal::Table.new title: @title,
+      Terminal::Table.new(title: @title,
                           headings: Item.headings,
-                          rows: @items.sort.map(&:to_row)
+                          rows: @items.sort.map(&:to_row)).to_s
     end
   end
 end
