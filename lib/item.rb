@@ -5,11 +5,14 @@ module Exord
     attr_reader :name
     attr_reader :price
 
-    def initialize(name, price)
-      @name = name
-      @price = Monetize.parse(price)
+    def initialize(name, price_string)
+      @name = name.strip
+      @price = Monetize.parse(price_string)
+      raise InvalidPrice if @price <= Money.new(0)
     end
 
+    # yes, this fails if there is a comma in the item name
+    # TODO: proper CSV import.
     def self.parse(string)
       new(*string.chomp.split(','))
     end
@@ -29,5 +32,7 @@ module Exord
     def <=>(other)
       @price <=> other.price
     end
+
+    class InvalidPrice < StandardError; end
   end
 end
