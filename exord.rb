@@ -15,6 +15,8 @@ require 'monetize'
 require 'terminal-table'
 require './lib/item'
 require './lib/menu'
+require './lib/order'
+require './lib/order_entry'
 include Exord
 
 Money.locale_backend = :currency
@@ -30,5 +32,12 @@ end
 
 puts menu.inspect
 puts "Desired total: $#{total}"
+
+puts
+puts "making 5 random orders"
+
+5.times do
+  puts menu.random_order(rand(1..20)).inspect
+end
 
 # pry

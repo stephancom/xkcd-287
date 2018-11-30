@@ -29,5 +29,15 @@ module Exord
                           headings: Item.headings,
                           rows: @items.sort.map(&:to_row)).to_s
     end
+
+    # create a random order of N (non-unique) items
+    # handy for testing and monte carlo method
+    def random_order(num_items)
+      Order.new.tap do |random_order|
+        num_items.times do
+          random_order << items.to_a.sample
+        end
+      end
+    end
   end
 end
