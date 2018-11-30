@@ -13,7 +13,8 @@
 require 'pry'
 require 'monetize'
 require 'terminal-table'
-require './lib/Item'
+require './lib/item'
+include Exord
 
 Money.locale_backend = :currency
 
