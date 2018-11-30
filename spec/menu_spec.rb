@@ -1,7 +1,4 @@
-require_relative '../lib/menu'
-include Exord
-
-Money.locale_backend = :currency
+require 'spec_helper'
 
 describe Menu do
   let(:menu_lines) { SLIM_MENU.split }

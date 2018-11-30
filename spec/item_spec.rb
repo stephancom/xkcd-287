@@ -1,7 +1,4 @@
-require_relative '../lib/item'
-include Exord
-
-Money.locale_backend = :currency
+require 'spec_helper'
 
 describe Item do
   let(:name) { 'food thing' }
