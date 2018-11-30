@@ -14,6 +14,7 @@ require 'pry'
 require 'monetize'
 require 'terminal-table'
 require './lib/item'
+require './lib/menu'
 include Exord
 
 Money.locale_backend = :currency
@@ -21,17 +22,13 @@ Money.locale_backend = :currency
 infile = ARGV.shift
 
 total = 0
-items = []
+menu = Menu.new('Exord Restaurant')
 File.open(infile) do |f|
   total = Monetize.parse(f.readline)
-  f.each do |thisline|
-    items << Item.new(*thisline.chomp.split(','))
-  end
+  menu.parse_lines(f)
 end
 
-puts Terminal::Table.new title: 'Menu',
-                         headings: %w[Item Cost],
-                         rows: items.sort.map(&:to_row)
+puts menu.inspect
 puts "Desired total: $#{total}"
 
 # pry
