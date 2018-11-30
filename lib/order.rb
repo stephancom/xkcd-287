@@ -3,11 +3,8 @@ module Exord
   # ... it would be nice to associate it with a Menu and
   # raise an exception if you try to add an item not on the menu
   class Order
-    def initialize(items = [])
+    def initialize
       @entries = []
-      items.each do |item|
-        add_item(item)
-      end
     end
 
     def add_item(item, quantity = 1)
@@ -23,6 +20,11 @@ module Exord
 
     def <<(item)
       add_item(item)
+    end
+
+    # mostly for debugging, maybe should be removed?
+    def items_count
+      @entries.sum(&:quantity)
     end
 
     def total

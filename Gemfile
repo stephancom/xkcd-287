@@ -5,3 +5,4 @@ gem 'pry'
 gem 'monetize'
 gem 'terminal-table'
 gem 'rspec'
+gem 'simplecov', require: false

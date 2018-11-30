@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Item do
   let(:name) { 'food thing' }
   describe 'a basic item' do
-    let(:price) { Money.new(2.50) }
+    let(:price) { Money.from_amount(2.50) }
     let(:price_string) { price.format }
     let(:item) { Item.new(name, price_string) }
 

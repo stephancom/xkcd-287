@@ -42,11 +42,24 @@ describe Menu do
     end
 
     describe 'the table returned by inspect' do
-      subject { menu.inspect.to_s }
+      subject { menu.inspect }
       it { is_expected.to match(/Billy Goat Tavern/) }
       it { is_expected.to match(/Cheezborger/) }
       it { is_expected.to match(/\$3.15/) }
       it { is_expected.not_to match(/fries/) }
+    end
+
+    it 'should generate a random item' do
+      expect(menu.random_item).to be_an_instance_of(Item)
+    end
+
+    describe 'creating a random order' do
+      let(:items) { 5 }
+      let(:order) { menu.random_order(items) }
+
+      it 'should have the right number of items' do
+        expect(order.items_count).to eq(items)
+      end
     end
   end
 
