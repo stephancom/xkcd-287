@@ -31,13 +31,23 @@ File.open(infile) do |f|
 end
 
 puts menu.inspect
-puts "Desired total: $#{total}"
+puts "Desired total: #{total.format}"
 
 puts
-puts "making 5 random orders"
+puts "making random orders"
+puts menu.random_order(rand(1..20)).inspect
 
-5.times do
-  puts menu.random_order(rand(1..20)).inspect
-end
+puts "monto carlo method attempt for total of #{total.format}"
+attempt = 0
+begin
+  attempt += 1
+  order = Order.new
+  begin
+    order << menu.random_item
+  end while order.total < total
+  puts "attempt #{attempt}: #{order.total.format}"
+end while order.total != total
 
+puts "success!"
+puts order.inspect
 # pry

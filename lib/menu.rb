@@ -32,10 +32,13 @@ module Exord
 
     # create a random order of N (non-unique) items
     # handy for testing and monte carlo method
+    def random_item
+      items.to_a.sample
+    end
     def random_order(num_items)
       Order.new.tap do |random_order|
         num_items.times do
-          random_order << items.to_a.sample
+          random_order << random_item
         end
       end
     end
