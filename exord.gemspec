@@ -50,4 +50,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec-command', '~> 1.0.3'
   spec.add_development_dependency 'rubocop', '~> 0.60.0'
   spec.add_development_dependency 'simplecov', '~> 0.16.1'
+  spec.add_development_dependency 'simplecov-console', '~> 0.4.0'
 end

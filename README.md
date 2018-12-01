@@ -1,4 +1,5 @@
-# xkcd-287
+# xkcd-287 [![Build Status](https://travis-ci.org/stephancom/xkcd-287.svg?branch=master)](https://travis-ci.org/stephancom/xkcd-287) [![Maintainability](https://api.codeclimate.com/v1/badges/df24c7191ee15f50aae4/maintainability)](https://codeclimate.com/github/stephancom/xkcd-287/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/df24c7191ee15f50aae4/test_coverage)](https://codeclimate.com/github/stephancom/xkcd-287/test_coverage)
+
 in fulfillment of a code challenge
 
 ![General solutions get you a 50% tip.](https://imgs.xkcd.com/comics/np_complete.png)
