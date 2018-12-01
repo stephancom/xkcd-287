@@ -11,6 +11,7 @@
 # in fulfillment of a programming challenge
 
 require 'methadone'
+require 'ruby-progressbar'
 require 'pry'
 require 'exord'
 
@@ -33,7 +34,8 @@ main do |filename|
   puts menu.inspect
   puts "Desired total: #{total.format}"
 
-  puts "monto carlo method attempt for total of #{total.format}"
+  puts "monto carlo method"
+  progressbar = ProgressBar.create(total: nil, title: '$0.00', format: 'Attempt %c: %t |%B|')
   attempt = 0
   order = nil
   loop do
@@ -43,9 +45,11 @@ main do |filename|
       order << menu.random_item
       break unless order.total < total
     end
-    puts "attempt #{attempt}: #{order.total.format}"
+    progressbar.increment
+    progressbar.title = order.total.format
     break if order.total == total
   end
+  progressbar.finish
 
   puts 'success!'
   puts order.inspect
