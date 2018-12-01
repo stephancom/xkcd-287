@@ -11,7 +11,7 @@ module Exord
       # check for duplicates - probably not terribly efficient
       dupe = @entries.find_index { |entry| entry.item == item }
       if dupe.nil?
-        @entries << OrderEntry.new(item, quantity)
+        @entries << Entry.new(item, quantity)
       else
         raise InvalidQuantity if quantity < 1
 
@@ -36,7 +36,7 @@ module Exord
 
     def inspect
       Terminal::Table.new(title: "Total: #{total.format}",
-                          headings: OrderEntry.headings,
+                          headings: Entry.headings,
                           rows: @entries.map(&:to_row)).to_s
     end
   end

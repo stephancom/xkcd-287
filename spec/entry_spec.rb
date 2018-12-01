@@ -1,4 +1,4 @@
-RSpec.describe OrderEntry do
+RSpec.describe Entry do
   # source: https://www.reuters.com/article/us-dessert/new-yorks-25000-dessert-sets-guinness-record-idUSN0753679220071107
   let(:name) { 'Frrozen Haute Chocolate' }
   let(:price) { Money.from_amount(25_000) }
@@ -6,7 +6,7 @@ RSpec.describe OrderEntry do
 
   describe 'a basic order entry' do
     let(:quantity) { 2 }
-    let(:entry) { OrderEntry.new(item, quantity) }
+    let(:entry) { Entry.new(item, quantity) }
 
     it 'computes a subtotal' do
       expect(entry.subtotal).to eq(price * quantity)
@@ -78,13 +78,13 @@ RSpec.describe OrderEntry do
   describe 'constructing' do
     it 'fails when quantity is 0' do
       expect {
-        OrderEntry.new(item, 0)
+        Entry.new(item, 0)
       }.to raise_error(InvalidQuantity)
     end
 
     it 'fails when quantity is negative' do
       expect {
-        OrderEntry.new(item, -1)
+        Entry.new(item, -1)
       }.to raise_error(InvalidQuantity)
     end
   end

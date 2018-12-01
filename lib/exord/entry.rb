@@ -1,6 +1,6 @@
 module Exord
   # a single line item from an order
-  class OrderEntry
+  class Entry
     attr_reader :item, :quantity
     def initialize(item, quantity = 1)
       @item = item

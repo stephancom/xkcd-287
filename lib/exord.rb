@@ -4,7 +4,7 @@ require 'exord/version'
 require 'exord/item'
 require 'exord/menu'
 require 'exord/order'
-require 'exord/order_entry'
+require 'exord/entry'
 
 module Exord
   class InvalidPrice < StandardError; end
