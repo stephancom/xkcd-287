@@ -30,7 +30,5 @@ module Exord
     def to_s
       "#{@quantity} #{@item.name}/@#{@item.price.format}: #{subtotal.format}"
     end
-
-    class InvalidQuantity < StandardError; end
   end
 end

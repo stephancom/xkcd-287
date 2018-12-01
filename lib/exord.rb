@@ -7,6 +7,7 @@ require 'exord/order'
 require 'exord/order_entry'
 
 module Exord
-  class Error < StandardError; end
+  class InvalidPrice < StandardError; end
+  class InvalidQuantity < StandardError; end
   # Your code goes here...
 end

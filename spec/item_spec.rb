@@ -55,13 +55,13 @@ RSpec.describe Item do
     it 'fails when price is 0' do
       expect {
         Item.new(name, '$0')
-      }.to raise_error(Item::InvalidPrice)
+      }.to raise_error(InvalidPrice)
     end
 
     it 'fails when price is negative' do
       expect {
         Item.new(name, '-$2')
-      }.to raise_error(Item::InvalidPrice)
+      }.to raise_error(InvalidPrice)
     end
   end
 

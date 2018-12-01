@@ -34,13 +34,13 @@ RSpec.describe OrderEntry do
       it 'fails when it becomes 0' do
         expect {
           entry.quantity = 0
-        }.to raise_error(OrderEntry::InvalidQuantity)
+        }.to raise_error(InvalidQuantity)
       end
 
       it 'fails when it becomes negative' do
         expect {
           entry.quantity -= 3
-        }.to raise_error(OrderEntry::InvalidQuantity)
+        }.to raise_error(InvalidQuantity)
       end
     end
 
@@ -79,13 +79,13 @@ RSpec.describe OrderEntry do
     it 'fails when quantity is 0' do
       expect {
         OrderEntry.new(item, 0)
-      }.to raise_error(OrderEntry::InvalidQuantity)
+      }.to raise_error(InvalidQuantity)
     end
 
     it 'fails when quantity is negative' do
       expect {
         OrderEntry.new(item, -1)
-      }.to raise_error(OrderEntry::InvalidQuantity)
+      }.to raise_error(InvalidQuantity)
     end
   end
 end

@@ -13,7 +13,7 @@ module Exord
       if dupe.nil?
         @entries << OrderEntry.new(item, quantity)
       else
-        raise OrderEntry::InvalidQuantity if quantity < 1
+        raise InvalidQuantity if quantity < 1
 
         @entries[dupe].quantity += quantity
       end

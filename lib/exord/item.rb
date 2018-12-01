@@ -31,7 +31,5 @@ module Exord
     def <=>(other)
       @price <=> other.price
     end
-
-    class InvalidPrice < StandardError; end
   end
 end
