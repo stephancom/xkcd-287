@@ -8,7 +8,7 @@ RSpec.describe Exactinator do
     menu << Item.new('Chips', '$1')
   end
   let(:total) { 2.95.to_money }
-  let(:exactinator) { Exactinator::MonteCarlo.new(menu, total) }
+  let(:exactinator) { Exactinator::Recursive.new(menu, total) }
 
   it 'should yield' do
     expect { |b|
