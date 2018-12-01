@@ -10,40 +10,59 @@
 # based on XKCD 287 - https://xkcd.com/287/
 # in fulfillment of a programming challenge
 
+require 'methadone'
+require 'pry'
 require 'exord'
+
+include Methadone::Main
+include Methadone::CLILogging
 include Exord
 
 Money.locale_backend = :currency
 
-infile = ARGV.shift
-
-total = 0
-menu = Menu.new('Exord Restaurant')
-File.open(infile) do |f|
-  total = Monetize.parse(f.readline)
-  menu.parse_lines(f)
-end
-
-puts menu.inspect
-puts "Desired total: #{total.format}"
-
-puts
-puts 'making random orders'
-puts menu.random_order(rand(1..20)).inspect
-
-puts "monto carlo method attempt for total of #{total.format}"
-attempt = 0
-loop do
-  attempt += 1
-  order = Order.new
-  loop do
-    order << menu.random_item
-    break unless order.total < total
+main do |filename|
+  total = 0
+  menu = Menu.new(options[:restaurant])
+  File.open(filename) do |f|
+    total_string = f.readline
+    total_string = options[:total] if options.key?(:total)
+    total = Monetize.parse(total_string)
+    menu.parse_lines(f)
   end
-  puts "attempt #{attempt}: #{order.total.format}"
-  break if order.total == total
+
+  puts menu.inspect
+  puts "Desired total: #{total.format}"
+
+  puts "monto carlo method attempt for total of #{total.format}"
+  attempt = 0
+  order = nil
+  loop do
+    attempt += 1
+    order = Order.new
+    loop do
+      order << menu.random_item
+      break unless order.total < total
+    end
+    puts "attempt #{attempt}: #{order.total.format}"
+    break if order.total == total
+  end
+
+  puts 'success!'
+  puts order.inspect
+  # pry
 end
 
-puts 'success!'
-puts order.inspect
-# pry
+options[:restaurant] = 'Menu'
+
+description 'Given an input file containing a target total and menu items, find all possible combinations of menu items that meet the total exactly'
+
+on('-r VALUE', '--restaurant', 'name of restaurant')
+on('-t VALUE', '--total', 'override total in the input file')
+methods = %w[montecarlo]
+on('-m VALUE', '--method', methods, 'possible methods to use', "(#{methods.join('|')})")
+
+arg :filename, :required, 'input filename. first line must have target total, remaining lines each have a menu item name a price, separated by a comma'
+
+version Exord::VERSION, compact: true
+
+go!
