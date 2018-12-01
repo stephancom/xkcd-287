@@ -19,15 +19,9 @@ module Exord
       order = Order.new(@menu)
       loop do
         yield(order.total) if block_given?
-        case order.total <=> @total
-        when 1 # order total > total
-          order = Order.new(@menu)
-        when -1 # order total < total
-          order << @menu.random_item
-        when 0 # order total == total
-          @orders << order
-          break
-        end
+        order << @menu.random_item
+        return (@orders << order) if order.total == @total
+        order = Order.new(@menu) if order.total > @total
       end
     end
   end
