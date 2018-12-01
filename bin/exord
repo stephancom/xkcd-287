@@ -61,7 +61,7 @@ options[:restaurant] = 'Menu'
 description 'Given an input file containing a target total and menu items, find all possible combinations of menu items that meet the total exactly'
 
 on('-r VALUE', '--restaurant', 'name of restaurant')
-on('-t VALUE', '--total', 'override total in the input file')
+on('-t VALUE', '--total', 'override total in the input file (don\'t forget to escape \$!)')
 methods = %w[montecarlo]
 on('-m VALUE', '--method', methods, 'possible methods to use', "(#{methods.join('|')})")
 

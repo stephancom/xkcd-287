@@ -1,9 +1,12 @@
 require 'simplecov'
 require 'bundler/setup'
+require 'rspec_command'
 require 'exord'
 include Exord
 
 RSpec.configure do |config|
+  config.include RSpecCommand
+
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
 

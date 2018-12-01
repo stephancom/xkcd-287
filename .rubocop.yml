@@ -33,6 +33,7 @@ Style/BlockDelimiters:
     - expect
     - uniq
     - git_source
+    - its
 
 Style/FrozenStringLiteralComment:
   Enabled: false

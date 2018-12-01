@@ -1,0 +1,5 @@
+$5.80
+Cheezborger "original",$3.15
+Hamborger,$2.95
+Pepsi,$1.65
+Chips,$1
