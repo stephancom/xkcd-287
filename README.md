@@ -30,7 +30,11 @@ in fulfillment of a code challenge
 ## Usage
 
 * install gem
-* exord menu.txt
+* `exord menu.txt`
+
+`exord -h` is available, and explains additional configurable options, such as a name for the menu, overriding the total, or selecting a method of finding orders.
+
+the file `menu.txt` represents the given problem; additional menus may be found in `spec/fixtures`
 
 ## Development
 

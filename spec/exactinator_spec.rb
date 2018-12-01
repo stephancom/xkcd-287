@@ -53,6 +53,8 @@ RSpec.describe Exactinator do
   describe Exactinator::Recursive do
     let(:exactinator) { Exactinator::Recursive.new(menu, total) }
     it_behaves_like 'an exactinator'
+
+    # TODO: additional tests for multiple results
   end
 
   describe Exactinator::MonteCarlo do

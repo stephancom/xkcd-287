@@ -11,5 +11,4 @@ module Exord
   class InvalidPrice < StandardError; end
   class InvalidQuantity < StandardError; end
   class InvalidItem < StandardError; end
-  # Your code goes here...
 end

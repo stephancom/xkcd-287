@@ -1,6 +1,6 @@
 module Exord
   module Exactinator
-    # generates a list of all possible orders with a given total
+    # generates a list of all possible orders for a menu with a given total
     # abstract class
     class Base
       attr_reader :orders

@@ -48,7 +48,8 @@ main do |filename|
     Logger.info 'No orders were found fulfilling the desired total'
   end
 
-  exactinator.orders.each do |order|
+  exactinator.orders.each_with_index do |order, i|
+    Logger.info "\nOrder #{i + 1} of #{exactinator.orders.count}"
     Logger.info order.inspect
   end
 end
