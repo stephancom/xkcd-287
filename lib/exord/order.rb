@@ -3,6 +3,7 @@ module Exord
   # ... it would be nice to associate it with a Menu and
   # raise an exception if you try to add an item not on the menu
   class Order
+    attr_reader :entries
     def initialize(menu)
       @menu = menu
       @entries = []

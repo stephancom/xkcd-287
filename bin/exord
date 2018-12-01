@@ -34,26 +34,22 @@ main do |filename|
   puts menu.inspect
   puts "Desired total: #{total.format}"
 
-  puts "monto carlo method"
+  puts 'monto carlo method'
   progressbar = ProgressBar.create(total: nil, title: '$0.00', format: 'Attempt %c: %t |%B|')
-  attempt = 0
-  order = nil
-  loop do
-    attempt += 1
-    order = Order.new(menu)
-    loop do
-      order << menu.random_item
-      break unless order.total < total
-    end
+  exactinator = Exactinator.new(menu, total)
+
+  exactinator.run do |this_total|
     progressbar.increment
-    progressbar.title = order.total.format
-    break if order.total == total
+    progressbar.title = this_total.format
   end
+
   progressbar.finish
 
   puts 'success!'
-  puts order.inspect
-  # pry
+
+  exactinator.orders.each do |order|
+    puts order.inspect
+  end
 end
 
 options[:restaurant] = 'Menu'

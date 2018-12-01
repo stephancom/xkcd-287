@@ -1,5 +1,6 @@
 require 'simplecov'
 require 'bundler/setup'
+require 'rspec/collection_matchers'
 require 'rspec_command'
 require 'exord'
 include Exord
