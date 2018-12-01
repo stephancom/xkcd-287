@@ -1,7 +1,6 @@
 module Exord
   module Exactinator
     # generates a list of all possible orders with a given total
-    # yields to an optional block for progress reporting, etc
     # abstract class
     class Base
       attr_reader :orders

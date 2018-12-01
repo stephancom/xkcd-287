@@ -11,7 +11,6 @@
 # in fulfillment of a programming challenge
 
 require 'methadone'
-require 'ruby-progressbar'
 require 'pry'
 require 'exord'
 
@@ -31,35 +30,37 @@ main do |filename|
     menu.parse_lines(f)
   end
 
-  puts menu.inspect
-  puts "Desired total: #{total.format}"
+  Logger.info "Finding orders with total: #{total.format} in menu:"
+  Logger.info menu.inspect
 
-  puts 'monto carlo method'
-  progressbar = ProgressBar.create(total: nil, title: '$0.00', format: 'Attempt %c: %t |%B|')
-  # exactinator = Exactinator::MonteCarlo.new(menu, total)
-  exactinator = Exactinator::Recursive.new(menu, total)
+  exactinator = case options[:method]
+                when 'recursive'
+                  Exactinator::Recursive.new(menu, total)
+                when 'montecarlo'
+                  Exactinator::MonteCarlo.new(menu, total)
+                end
 
-  exactinator.run do |this_total|
-    progressbar.increment
-    progressbar.title = this_total.format
+  exactinator.run
+
+  if exactinator.orders.any?
+    Logger.info "Success!  Found #{exactinator.orders.count} order(s)"
+  else
+    Logger.info 'No orders were found fulfilling the desired total'
   end
 
-  progressbar.finish
-
-  puts 'success!'
-
   exactinator.orders.each do |order|
-    puts order.inspect
+    Logger.info order.inspect
   end
 end
 
 options[:restaurant] = 'Menu'
+options[:method] = 'recursive'
 
 description 'Given an input file containing a target total and menu items, find all possible combinations of menu items that meet the total exactly'
 
 on('-r VALUE', '--restaurant', 'name of restaurant')
 on('-t VALUE', '--total', 'override total in the input file (don\'t forget to escape \$!)')
-methods = %w[montecarlo]
+methods = %w[recursive montecarlo]
 on('-m VALUE', '--method', methods, 'possible methods to use', "(#{methods.join('|')})")
 
 arg :filename, :required, 'input filename. first line must have target total, remaining lines each have a menu item name a price, separated by a comma'

@@ -10,12 +10,6 @@ RSpec.describe Exactinator do
   let(:total) { 2.95.to_money }
   let(:exactinator) { Exactinator::Recursive.new(menu, total) }
 
-  it 'should yield' do
-    expect { |b|
-      exactinator.run(&b)
-    }.to yield_control
-  end
-
   it 'should start with no orders' do
     expect(exactinator).to have(0).orders
   end

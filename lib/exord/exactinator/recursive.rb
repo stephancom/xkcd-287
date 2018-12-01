@@ -1,16 +1,11 @@
 module Exord
   module Exactinator
+    # recursive method for finding all possible orders
     class Recursive < Base
       def run
-        @orders = []
-
-        order = Order.new(@menu)
         menu_items = @menu.items.to_a.sort.reverse # high to low
 
         @orders = exact_orders_with_items(menu_items, @total)
-        yield(@total) if block_given?
-
-        @orders.any?
       end
 
       private
@@ -20,30 +15,30 @@ module Exord
         return suborders if items.empty? || subtotal <= 0
 
         # start by popping off the first (most expensive item)
-        item = items.first
+        item = items.first # for some reason, shift doesn't work?
+        items = items[1..-1]
 
         # a float of how many items fit in the price
-        max_of_item = subtotal/item.price
+        max_of_item = subtotal / item.price
 
-        # then, trivially check to see if some multiple
+        # trivially check to see if some multiple
         # of this one item makes the subtotal
-        if max_of_item % 1 == 0
+        if (max_of_item % 1).zero?
           suborders << Order.new(@menu).tap do |simple_order|
             simple_order.add_item(item, max_of_item.to_i)
-            simple_order
           end
         end
 
+        return suborders if items.empty?
+
         # finally, for each possible number of this item (including none)
-        # find suborders of remaining items minus this item
-        remains = items[1..-1]
-        if remains.any?
-          (0..max_of_item.floor).each do |quantity|
-            new_sub = subtotal - (item.price * quantity)
-            exact_orders_with_items(remains, new_sub).each do |order|
-              order.add_item(item, quantity) unless quantity == 0
-              suborders << order
-            end
+        # find order of remaining items with a total equal to the previous
+        # subtotal minus the cost of the given number of this item
+        (0..max_of_item.floor).each do |quantity|
+          new_subtotal = subtotal - (item.price * quantity)
+          exact_orders_with_items(items, new_subtotal).each do |order|
+            order.add_item(item, quantity) if quantity.positive?
+            suborders << order
           end
         end
 

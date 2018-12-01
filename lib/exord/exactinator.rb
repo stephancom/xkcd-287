@@ -2,7 +2,8 @@ require 'exord/exactinator/base'
 require 'exord/exactinator/monte_carlo'
 require 'exord/exactinator/recursive'
 
-# container module for Exactinator classes
-module Exord::Exactinator
-
+module Exord
+  # container module for Exactinator classes
+  module Exactinator
+  end
 end

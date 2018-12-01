@@ -1,7 +1,5 @@
 module Exord
   # models an order - a collection of items and quantities
-  # ... it would be nice to associate it with a Menu and
-  # raise an exception if you try to add an item not on the menu
   class Order
     attr_reader :entries
     def initialize(menu)
@@ -12,6 +10,7 @@ module Exord
     def add_item(item, quantity = 1)
       # check for duplicates and inclusion on menu - probably not terribly efficient
       raise InvalidItem unless @menu.include?(item)
+
       dupe = @entries.find_index { |entry| entry.item == item }
       if dupe.nil?
         @entries << Entry.new(item, quantity)
