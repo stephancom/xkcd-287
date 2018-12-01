@@ -9,21 +9,22 @@ module Exord
       @orders = []
     end
 
-    # return a list of all possible orders with that total
+    # generates a list of all possible orders with that total
     # yields to an optional block for progress reporting, etc
     # Monte Carlo method for now.
     # TODO: handling no orders.  Should be maybe true/false
     # but Monto Carlo never terminates if there's no solution.
     def run
       @orders = []
+      order = Order.new(@menu)
       loop do
-        order = Order.new(@menu)
-        loop do
-          order << @menu.random_item
-          break unless order.total < @total
-        end
         yield(order.total) if block_given?
-        if order.total == @total
+        case order.total <=> @total
+        when 1 # order total > total
+          order = Order.new(@menu)
+        when -1 # order total < total
+          order << @menu.random_item
+        when 0 # order total == total
           @orders << order
           break
         end
