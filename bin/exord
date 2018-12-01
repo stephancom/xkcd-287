@@ -36,7 +36,7 @@ main do |filename|
 
   puts 'monto carlo method'
   progressbar = ProgressBar.create(total: nil, title: '$0.00', format: 'Attempt %c: %t |%B|')
-  exactinator = Exactinator.new(menu, total)
+  exactinator = Exactinator::MonteCarlo.new(menu, total)
 
   exactinator.run do |this_total|
     progressbar.increment
