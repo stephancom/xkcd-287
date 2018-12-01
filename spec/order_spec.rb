@@ -8,6 +8,8 @@ RSpec.describe Order do
   let(:peche_a_la_frog) { Item.new('peche a la frog', pf_price.format) }
   let(:mint_price) { Money.from_amount(0.25) }
   let(:mint) { Item.new('after dinner mint', mint_price.format) }
+  let(:coq_au_vin) { Item.new('Coq au Vin', '$6.99') } # not on offer
+
   before do
     menu << frog_a_la_peche
     menu << peche_a_la_frog
@@ -15,7 +17,7 @@ RSpec.describe Order do
   end
 
   describe 'an order' do
-    let(:order) { Order.new }
+    let(:order) { Order.new(menu) }
     before do
       order << frog_a_la_peche
       order << peche_a_la_frog
@@ -89,6 +91,12 @@ RSpec.describe Order do
           expect(order.instance_variable_get(:@entries).count).to eq(2)
         end
       end
+    end
+
+    it 'should fail to add an item not on the menu' do
+      expect {
+        order << coq_au_vin
+      }.to raise_error(InvalidItem)
     end
 
     describe 'the table returned by inspect' do

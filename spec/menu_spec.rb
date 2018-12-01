@@ -39,6 +39,16 @@ RSpec.describe Menu do
       }.not_to change { menu.items.count }
     end
 
+    describe 'membership' do
+      it 'should be true when item is in menu' do
+        expect(menu.include?(cheezborger)).to be true
+      end
+
+      it 'should be false when the item is not in menu' do
+        expect(menu.include?(fries)).to be false
+      end
+    end
+
     describe 'the table returned by inspect' do
       subject { menu.inspect }
       it { is_expected.to match(/Billy Goat Tavern/) }

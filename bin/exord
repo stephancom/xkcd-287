@@ -40,7 +40,7 @@ main do |filename|
   order = nil
   loop do
     attempt += 1
-    order = Order.new
+    order = Order.new(menu)
     loop do
       order << menu.random_item
       break unless order.total < total

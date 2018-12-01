@@ -19,6 +19,10 @@ module Exord
       end
     end
 
+    def include?(item)
+      @items.include?(item)
+    end
+
     def to_s
       @title
     end
@@ -36,7 +40,7 @@ module Exord
     end
 
     def random_order(num_items)
-      Order.new.tap do |random_order|
+      Order.new(self).tap do |random_order|
         num_items.times do
           random_order << random_item
         end
