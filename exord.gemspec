@@ -38,11 +38,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'methadone', '~> 2.0.0'
+  spec.add_dependency 'methadone', '~> 2.0.2'
   spec.add_dependency 'monetize', '~> 1.9.0'
   spec.add_dependency 'terminal-table', '~> 1.8.0'
 
-  spec.add_development_dependency 'bundler', '~> 1.17'
+  spec.add_development_dependency 'bundler', '~> 2.1.4'
   spec.add_development_dependency 'pry', '~> 0.12.2'
   spec.add_development_dependency 'rake', '~> 12.3.3'
   spec.add_development_dependency 'rspec', '~> 3.8.0'
